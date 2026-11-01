@@ -20,7 +20,7 @@ public class Book {
     @Column(nullable = false)
     private String author;
     @Column(nullable = false)
-    private Long stock;
+    private Integer stock;
 
     @Column(name = "cover_url")
     private String coverUrl;

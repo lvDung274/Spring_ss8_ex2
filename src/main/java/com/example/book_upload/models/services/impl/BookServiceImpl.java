@@ -1,9 +1,11 @@
 package com.example.book_upload.models.services.impl;
 
 import com.example.book_upload.models.dto.req.BookCreateDTO;
+import com.example.book_upload.models.dto.req.BookUpdateStockDTO;
 import com.example.book_upload.models.entities.Book;
 import com.example.book_upload.models.repositories.BookRepository;
 import com.example.book_upload.models.services.BookService;
+import exceptions.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -53,6 +55,14 @@ public class BookServiceImpl implements BookService {
         book.setStock(dto.stock());
         book.setCoverUrl(coverUrl);
 
+        return bookRepository.save(book);
+    }
+    @Override
+    public Book updateBook(Long id, BookUpdateStockDTO dto) {
+        Book book = bookRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy sách với ID: " + id));
+
+        book.setStock(dto.stock());
         return bookRepository.save(book);
     }
 

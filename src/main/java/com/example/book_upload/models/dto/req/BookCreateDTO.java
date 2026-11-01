@@ -5,7 +5,7 @@ import org.springframework.web.multipart.MultipartFile;
 public record BookCreateDTO(
         String title,
         String author,
-        Long stock,
+        Integer stock,
         MultipartFile coverImage
 ) {
 }
